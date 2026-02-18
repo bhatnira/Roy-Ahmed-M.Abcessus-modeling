@@ -8,10 +8,39 @@ Structural model of **Mycobacterium abscessus DNA Gyrase** built using Rosetta C
 |------|---------|
 | **Target Organism** | *Mycobacterium abscessus* |
 | **Target Proteins** | DNA Gyrase subunit A (GyrA) and subunit B (GyrB) |
-| **UniProt IDs** | **B1ME58** (GyrA, 839 aa) and **B1ME45** (GyrB, 677 aa) |
-| **Template** | PDB **5BS8** - *M. tuberculosis* DNA gyrase-DNA complex (X-ray, 2.56 Å) |
+| **UniProt IDs** | **B1ME58** (GyrA, 839 aa) and **B1ME45** (GyrB, 675 aa) |
+| **Template** | PDB **5BS8** - *M. tuberculosis* DNA gyrase-DNA complex (X-ray, 2.8 Å) |
 | **Complex** | Heterotetramer (GyrA₂-GyrB₂) with DNA and Mg²⁺ ions |
 | **Method** | Rosetta partial_thread + FastRelax |
+
+## Modeling Results
+
+### Sequence Identity
+- **GyrA alignment**: 90.3% identity (439/486 aligned residues)
+  - Coverage: residues 17-503 of target
+- **GyrB alignment**: 95.5% identity (234/245 aligned residues)
+  - Coverage: residues 425-675 of target
+
+### Rosetta Scores (ref2015)
+- **GyrA relaxed model**: -1551.42 REU
+- **GyrB relaxed model**: -717.83 REU
+
+### Output Files
+
+| File | Description |
+|------|-------------|
+| `output/mabs_gyrA_new_relaxed_*.pdb` | Relaxed GyrA model (486 residues) |
+| `output/mabs_gyrB_new_relaxed_*.pdb` | Relaxed GyrB model (245 residues) |
+| `output/mabs_gyrase_tetramer_dna_mg.pdb` | Full tetramer with DNA and Mg²⁺ |
+| `output/mabs_gyrase_tetramer_protein_only.pdb` | Protein-only tetramer |
+
+### Tetramer Chain Assignment
+- **Chain A**: GyrA subunit 1
+- **Chain B**: GyrB subunit 1  
+- **Chain C**: GyrA subunit 2 (symmetry copy)
+- **Chain D**: GyrB subunit 2 (symmetry copy)
+- **Chains E-H**: DNA from template
+- **Mg²⁺ ions**: 4 ions from template
 
 ## Overview
 
@@ -47,30 +76,6 @@ rosetta-cm/
 │   └── models/               # Output models
 └── README.md
 ```
-
-## Model Details
-
-### What was modeled:
-| Chain | Protein | Residues Modeled | Position Range | Sequence Match |
-|-------|---------|------------------|----------------|----------------|
-| A | GyrA | 486 | 17-502 | 100% |
-| B | GyrB | 245 | 425-669 | 100% |
-| C | GyrA | 486 | 17-502 | 100% |
-| D | GyrB | 245 | 425-669 | 100% |
-| E-H | DNA | 4 strands | - | From template |
-
-### Rosetta Scores:
-- Individual GyrA chain: **-913 REU** (excellent)
-- Individual GyrB chain: Relaxed and optimized
-
-## Output Files
-
-| File | Description |
-|------|-------------|
-| `output/mabs_gyrA_relaxed_*.pdb` | Relaxed GyrA monomer |
-| `output/mabs_gyrB_relaxed_*.pdb` | Relaxed GyrB monomer |
-| `output/models/mabs_gyrase_dimer_AB_DNA.pdb` | Heterodimer with DNA |
-| `output/models/mabs_gyrase_tetramer_A2B2_DNA.pdb` | Full heterotetramer |
 
 ## Quick Start
 
