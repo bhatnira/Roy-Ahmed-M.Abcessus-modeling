@@ -29,10 +29,10 @@ Structural model of **Mycobacterium abscessus DNA Gyrase** built using Rosetta C
 
 | File | Description |
 |------|-------------|
-| `output/mabs_gyrA_new_relaxed_*.pdb` | Relaxed GyrA model (486 residues) |
-| `output/mabs_gyrB_new_relaxed_*.pdb` | Relaxed GyrB model (245 residues) |
-| `output/mabs_gyrase_tetramer_dna_mg.pdb` | Full tetramer with DNA and Mg²⁺ |
-| `output/mabs_gyrase_tetramer_protein_only.pdb` | Protein-only tetramer |
+| `output/threaded/` | Threaded models before relaxation |
+| `output/relaxed/` | FastRelax-refined individual chains |
+| `output/tetramer/` | Assembled heterotetramer models |
+| `output/scores/` | Rosetta score files |
 
 ### Tetramer Chain Assignment
 - **Chain A**: GyrA subunit 1
@@ -65,15 +65,26 @@ RosettaCM is a powerful tool for building protein structure models using one or 
 ```
 rosetta-cm/
 ├── input/
-│   ├── target.fasta          # Target sequence (both chains)
-│   ├── templates/            # Template PDB files
-│   └── alignments/           # Sequence alignments
-├── scripts/
-│   ├── prepare_templates.py  # Template preparation script
-│   ├── generate_alignment.py # Alignment generation
-│   └── run_rosettacm.sh      # Main execution script
+│   ├── sequences/            # Target FASTA sequences
+│   │   ├── B1ME58_GyrA.fasta
+│   │   └── B1ME45_GyrB.fasta
+│   ├── alignments_final/     # Final Grishin alignments
+│   │   ├── alignment_gyrA_proper.grishin
+│   │   └── alignment_gyrB_proper.grishin
+│   └── templates/            # Template PDB files
+│       └── 5bs8.pdb
 ├── output/
-│   └── models/               # Output models
+│   ├── threaded/             # Threaded models
+│   ├── relaxed/              # FastRelax-refined chains
+│   ├── tetramer/             # Assembled complexes
+│   │   ├── mabs_gyrase_tetramer_dna_mg.pdb
+│   │   └── mabs_gyrase_tetramer_protein_only.pdb
+│   └── scores/               # Rosetta score files
+├── scripts/
+│   └── assemble_tetramer.py  # Tetramer assembly script
+├── xml/
+│   └── fastrelax.xml         # Rosetta XML protocols
+├── logs/                     # Rosetta logs and crash files
 └── README.md
 ```
 
