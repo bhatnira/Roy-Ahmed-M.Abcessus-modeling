@@ -1,0 +1,20 @@
+# AutoDock Vina Configuration for M. abscessus Gyrase
+# Fluoroquinolone binding site (DNA cleavage region)
+
+receptor = receptor.pdbqt
+ligand = ligand.pdbqt
+
+center_x = 32.276
+center_y = 11.173
+center_z = 22.137
+
+size_x = 25
+size_y = 25
+size_z = 25
+
+exhaustiveness = 32
+num_modes = 10
+energy_range = 5
+
+out = docked_poses.pdbqt
+log = docking_log.txt

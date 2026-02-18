@@ -1,0 +1,67 @@
+<ROSETTASCRIPTS>
+    <SCOREFXNS>
+        <ScoreFunction name="ref2015" weights="ref2015"/>
+        <ScoreFunction name="ref2015_cart" weights="ref2015_cart"/>
+    </SCOREFXNS>
+    
+    <RESIDUE_SELECTORS>
+        <!-- Select the disjoint loop regions for refinement -->
+        <Index name="loop_regions" resnums="425-430,446-454,472-475,520-538,559-620,629-630,655-657,675-675"/>
+        <Not name="not_loops" selector="loop_regions"/>
+    </RESIDUE_SELECTORS>
+    
+    <MOVE_MAP_FACTORIES>
+        <!-- Only allow loop regions to move -->
+        <MoveMapFactory name="loop_mm" bb="false" chi="false">
+            <Backbone residue_selector="loop_regions" enable="true"/>
+            <Chi residue_selector="loop_regions" enable="true"/>
+        </MoveMapFactory>
+        
+        <!-- Allow everything to move for final refinement -->
+        <MoveMapFactory name="full_mm" bb="true" chi="true"/>
+    </MOVE_MAP_FACTORIES>
+    
+    <MOVERS>
+        <!-- Loop modeling with KIC -->
+        <LoopModeler name="loop_model" 
+            scorefxn="ref2015"
+            config="kic"
+            loops_file="loops.txt"
+            max_kic_build_attempts="1000"/>
+        
+        <!-- Minimize loop regions -->
+        <MinMover name="min_loops" 
+            scorefxn="ref2015_cart" 
+            movemap_factory="loop_mm"
+            type="lbfgs_armijo_nonmonotone"
+            tolerance="0.01"
+            cartesian="true"/>
+        
+        <!-- Final relaxation of loop regions -->
+        <FastRelax name="relax_loops" 
+            scorefxn="ref2015" 
+            repeats="3"
+            movemap_factory="loop_mm"/>
+        
+        <!-- Optional: Full relax at the end -->
+        <FastRelax name="full_relax" 
+            scorefxn="ref2015" 
+            repeats="1"
+            movemap_factory="full_mm"/>
+    </MOVERS>
+    
+    <PROTOCOLS>
+        <!-- Option 1: Just minimize loops (fast) -->
+        <!-- <Add mover="min_loops"/> -->
+        
+        <!-- Option 2: Relax loops (moderate) -->
+        <Add mover="relax_loops"/>
+        
+        <!-- Option 3: Full protocol (slow but best) -->
+        <!-- <Add mover="loop_model"/> -->
+        <!-- <Add mover="relax_loops"/> -->
+        <!-- <Add mover="full_relax"/> -->
+    </PROTOCOLS>
+    
+    <OUTPUT scorefxn="ref2015"/>
+</ROSETTASCRIPTS>
