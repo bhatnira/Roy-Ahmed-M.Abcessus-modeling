@@ -1,0 +1,121 @@
+<ROSETTASCRIPTS>
+    <!-- RosettaCM Protocol for M. abscessus DNA Gyrase with DNA and Mg2+ -->
+    <!-- Complex: GyrA2-GyrB2 heterotetramer + G-segment DNA + Mg ions -->
+    
+    <SCOREFXNS>
+        <!-- Standard score function for protein-DNA complexes -->
+        <ScoreFunction name="stage1_scorefxn" weights="score3" symmetric="0">
+            <Reweight scoretype="atom_pair_constraint" weight="1.0"/>
+        </ScoreFunction>
+        
+        <ScoreFunction name="stage2_scorefxn" weights="score4_smooth_cart" symmetric="0">
+            <Reweight scoretype="atom_pair_constraint" weight="0.5"/>
+        </ScoreFunction>
+        
+        <ScoreFunction name="fullatom_scorefxn" weights="ref2015" symmetric="0">
+            <Reweight scoretype="atom_pair_constraint" weight="1.0"/>
+            <Reweight scoretype="coordinate_constraint" weight="1.0"/>
+        </ScoreFunction>
+    </SCOREFXNS>
+    
+    <RESIDUE_SELECTORS>
+        <!-- Select protein chains -->
+        <Chain name="protein_chains" chains="A,B,C,D"/>
+        
+        <!-- Select DNA chains -->
+        <Chain name="dna_chains" chains="E,F,G,H"/>
+        
+        <!-- Select metal ions (Mg2+) -->
+        <ResidueName name="metals" residue_name3="MG"/>
+        
+        <!-- Interface residues -->
+        <Neighborhood name="protein_dna_interface" selector="dna_chains" distance="8.0"/>
+        
+        <!-- All non-metal residues -->
+        <Not name="not_metals" selector="metals"/>
+    </RESIDUE_SELECTORS>
+    
+    <TASKOPERATIONS>
+        <!-- Prevent repacking of DNA and metals -->
+        <OperateOnResidueSubset name="fix_dna" selector="dna_chains">
+            <PreventRepackingRLT/>
+        </OperateOnResidueSubset>
+        
+        <OperateOnResidueSubset name="fix_metals" selector="metals">
+            <PreventRepackingRLT/>
+        </OperateOnResidueSubset>
+        
+        <!-- Standard task operations -->
+        <InitializeFromCommandline name="init"/>
+        <IncludeCurrent name="include_current"/>
+        <RestrictToRepacking name="repack_only"/>
+    </TASKOPERATIONS>
+    
+    <MOVERS>
+        <!-- Hybridize mover for comparative modeling -->
+        <Hybridize name="hybridize"
+            stage1_scorefxn="stage1_scorefxn"
+            stage2_scorefxn="stage2_scorefxn"
+            fa_scorefxn="fullatom_scorefxn"
+            batch="1"
+            stage1_increase_cycles="1.0"
+            stage2_increase_cycles="1.0"
+            linmin_only="0"
+            realign_domains="0"
+            add_hetatm="1"
+            hetatm_self_cst_weight="10.0"
+            hetatm_prot_cst_weight="5.0">
+            <!-- Template structure - protein only for threading -->
+            <!-- DNA and metals will be added back via add_hetatm from complete template -->
+            <Template pdb="input/templates/5bs8_protein_only.pdb" 
+                     cst_file="AUTO" 
+                     weight="1.0" 
+                     randomize="0.0"/>
+        </Hybridize>
+        
+        <!-- Coordinate constraints to preserve DNA and metal positions -->
+        <ConstraintSetMover name="add_csts" add_constraints="1" cst_file="AUTO"/>
+        
+        <!-- FastRelax with constraints -->
+        <FastRelax name="relax" 
+                   scorefxn="fullatom_scorefxn" 
+                   repeats="2"
+                   task_operations="init,include_current,fix_dna,fix_metals"
+                   cartesian="0"
+                   dualspace="1"
+                   ramp_down_constraints="0"/>
+        
+        <!-- Minimize protein-DNA interface -->
+        <MinMover name="minimize" 
+                  scorefxn="fullatom_scorefxn" 
+                  chi="1" 
+                  bb="1" 
+                  jump="ALL"
+                  cartesian="0"
+                  tolerance="0.01"/>
+    </MOVERS>
+    
+    <FILTERS>
+        <!-- Score filter -->
+        <ScoreType name="total_score" scorefxn="fullatom_scorefxn" threshold="0" confidence="0"/>
+        
+        <!-- RMSD to template -->
+        <Rmsd name="rmsd_to_template" 
+              reference_name="input/templates/5bs8_complete.pdb"
+              chains="A,B,C,D"
+              superimpose="1"
+              threshold="5.0"
+              confidence="0"/>
+    </FILTERS>
+    
+    <PROTOCOLS>
+        <!-- Main protocol -->
+        <Add mover="hybridize"/>
+        <Add mover="relax"/>
+        <Add filter="total_score"/>
+        <Add filter="rmsd_to_template"/>
+    </PROTOCOLS>
+    
+    <OUTPUT scorefxn="fullatom_scorefxn"/>
+    
+</ROSETTASCRIPTS>

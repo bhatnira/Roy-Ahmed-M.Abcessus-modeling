@@ -1,0 +1,11 @@
+# macOS
+.DS_Store
+
+# Rosetta crash logs
+ROSETTA_CRASH.log
+
+# Large PDB files (can be re-downloaded)
+# 5bs8.pdb
+
+# Score files (can be regenerated)
+*.sc

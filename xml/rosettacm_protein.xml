@@ -1,0 +1,67 @@
+<ROSETTASCRIPTS>
+    <!-- RosettaCM Protocol for M. abscessus DNA Gyrase - Protein Only -->
+    <!-- Complex: GyrA2-GyrB2 heterotetramer -->
+    <!-- DNA and Mg2+ will be merged after modeling -->
+    
+    <SCOREFXNS>
+        <ScoreFunction name="stage1_scorefxn" weights="score3" symmetric="0">
+            <Reweight scoretype="atom_pair_constraint" weight="1.0"/>
+        </ScoreFunction>
+        
+        <ScoreFunction name="stage2_scorefxn" weights="score4_smooth_cart" symmetric="0">
+            <Reweight scoretype="atom_pair_constraint" weight="0.5"/>
+        </ScoreFunction>
+        
+        <ScoreFunction name="fullatom_scorefxn" weights="ref2015" symmetric="0">
+            <Reweight scoretype="atom_pair_constraint" weight="1.0"/>
+            <Reweight scoretype="coordinate_constraint" weight="1.0"/>
+        </ScoreFunction>
+    </SCOREFXNS>
+    
+    <RESIDUE_SELECTORS>
+        <Chain name="all_chains" chains="A,B,C,D"/>
+    </RESIDUE_SELECTORS>
+    
+    <TASKOPERATIONS>
+        <InitializeFromCommandline name="init"/>
+        <IncludeCurrent name="include_current"/>
+        <RestrictToRepacking name="repack_only"/>
+    </TASKOPERATIONS>
+    
+    <MOVERS>
+        <!-- Hybridize mover for comparative modeling -->
+        <Hybridize name="hybridize"
+            stage1_scorefxn="stage1_scorefxn"
+            stage2_scorefxn="stage2_scorefxn"
+            fa_scorefxn="fullatom_scorefxn"
+            batch="1"
+            stage1_increase_cycles="1.0"
+            stage2_increase_cycles="1.0"
+            linmin_only="0"
+            realign_domains="0"
+            add_hetatm="0">
+            <!-- Template structure - protein only -->
+            <Template pdb="input/templates/5bs8_protein_only.pdb" 
+                     cst_file="AUTO" 
+                     weight="1.0" 
+                     randomize="0.0"/>
+        </Hybridize>
+        
+        <!-- FastRelax -->
+        <FastRelax name="relax" 
+                   scorefxn="fullatom_scorefxn" 
+                   repeats="2"
+                   task_operations="init,include_current"
+                   cartesian="0"
+                   dualspace="1"
+                   ramp_down_constraints="0"/>
+    </MOVERS>
+    
+    <PROTOCOLS>
+        <Add mover="hybridize"/>
+        <Add mover="relax"/>
+    </PROTOCOLS>
+    
+    <OUTPUT scorefxn="fullatom_scorefxn"/>
+    
+</ROSETTASCRIPTS>

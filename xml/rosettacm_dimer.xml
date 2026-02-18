@@ -1,0 +1,162 @@
+<ROSETTASCRIPTS>
+    <!--
+    RosettaCM XML Protocol for Dimeric Homology Modeling
+    
+    This protocol performs comparative modeling using multiple templates
+    and is specifically configured for dimeric proteins.
+    
+    Usage:
+    rosetta_scripts.default.linuxgccrelease \
+        -parser:protocol rosettacm_dimer.xml \
+        -in:file:fasta target.fasta \
+        -in:file:silent threaded.silent \
+        -nstruct 100
+    -->
+    
+    <SCOREFXNS>
+        <!-- Stage 1: Centroid-level scoring for initial assembly -->
+        <ScoreFunction name="stage1" weights="score3" symmetric="0">
+            <Reweight scoretype="hbond_sr_bb" weight="1.0"/>
+            <Reweight scoretype="hbond_lr_bb" weight="1.0"/>
+            <Reweight scoretype="atom_pair_constraint" weight="1.0"/>
+            <Reweight scoretype="dihedral_constraint" weight="1.0"/>
+        </ScoreFunction>
+        
+        <!-- Stage 2: Smooth scoring for refinement -->
+        <ScoreFunction name="stage2" weights="score4_smooth_cart" symmetric="0">
+            <Reweight scoretype="atom_pair_constraint" weight="0.5"/>
+            <Reweight scoretype="dihedral_constraint" weight="0.5"/>
+        </ScoreFunction>
+        
+        <!-- Full-atom scoring for final evaluation -->
+        <ScoreFunction name="fullatom" weights="ref2015_cart" symmetric="0">
+            <Reweight scoretype="atom_pair_constraint" weight="0.5"/>
+            <Reweight scoretype="coordinate_constraint" weight="0.5"/>
+        </ScoreFunction>
+        
+        <!-- Interface-specific scoring -->
+        <ScoreFunction name="interface_score" weights="ref2015">
+            <Reweight scoretype="fa_atr" weight="1.0"/>
+            <Reweight scoretype="fa_rep" weight="0.55"/>
+            <Reweight scoretype="fa_elec" weight="1.0"/>
+            <Reweight scoretype="hbond_bb_sc" weight="1.0"/>
+            <Reweight scoretype="hbond_sc" weight="1.0"/>
+        </ScoreFunction>
+    </SCOREFXNS>
+    
+    <RESIDUE_SELECTORS>
+        <!-- Select individual chains -->
+        <Chain name="chainA" chains="A"/>
+        <Chain name="chainB" chains="B"/>
+        
+        <!-- Select interface residues -->
+        <InterfaceByVector name="interface_residues">
+            <Chain chains="A"/>
+            <Chain chains="B"/>
+        </InterfaceByVector>
+        
+        <!-- Select non-interface residues -->
+        <Not name="non_interface" selector="interface_residues"/>
+    </RESIDUE_SELECTORS>
+    
+    <TASKOPERATIONS>
+        <!-- Restrict repacking to interface -->
+        <OperateOnResidueSubset name="only_interface" selector="non_interface">
+            <PreventRepackingRLT/>
+        </OperateOnResidueSubset>
+        
+        <!-- Standard task operations -->
+        <InitializeFromCommandline name="init"/>
+        <IncludeCurrent name="include_current"/>
+        <RestrictToRepacking name="repack_only"/>
+    </TASKOPERATIONS>
+    
+    <FILTERS>
+        <!-- Filter by total score -->
+        <ScoreType name="total_score" scorefxn="fullatom" threshold="0" confidence="1"/>
+        
+        <!-- Filter by interface score -->
+        <InterfaceHoles name="interface_holes" jump="1" threshold="200"/>
+        
+        <!-- RMSD filter if native provided -->
+        <Rmsd name="rmsd_filter" confidence="0"/>
+    </FILTERS>
+    
+    <MOVERS>
+        <!--
+        Main Hybridize mover for RosettaCM
+        
+        Parameters explained:
+        - stage1_scorefxn: Scoring during fragment insertion
+        - stage2_scorefxn: Scoring during cartesian minimization
+        - fa_scorefxn: Full-atom scoring
+        - batch: Number of structures to process together
+        - stage1_increase_cycles: Multiplier for stage1 cycles
+        - stage2_increase_cycles: Multiplier for stage2 cycles
+        - linmin_only: Use only linear minimization (faster)
+        -->
+        <Hybridize name="hybridize" 
+            stage1_scorefxn="stage1"
+            stage2_scorefxn="stage2"
+            fa_scorefxn="fullatom"
+            batch="1"
+            stage1_increase_cycles="1.0"
+            stage2_increase_cycles="1.0"
+            linmin_only="0"
+            realign_domains="0"
+            add_hetatm="0">
+            <!-- Templates will be added at runtime via command line -->
+            <!-- Example: <Template pdb="template1.pdb" cst_file="AUTO" weight="1.0"/> -->
+        </Hybridize>
+        
+        <!-- Final relaxation of the model -->
+        <FastRelax name="relax" 
+            scorefxn="fullatom" 
+            repeats="3"
+            cartesian="1"
+            bondangle="1"
+            bondlength="1">
+            <MoveMap name="relax_mm">
+                <Chain number="1" chi="1" bb="1"/>
+                <Chain number="2" chi="1" bb="1"/>
+            </MoveMap>
+        </FastRelax>
+        
+        <!-- Interface-focused refinement -->
+        <InterfaceRelax name="interface_relax"
+            scorefxn="fullatom"
+            jump="1"/>
+        
+        <!-- Minimize interface -->
+        <MinMover name="minimize" 
+            scorefxn="fullatom"
+            type="lbfgs_armijo_nonmonotone"
+            tolerance="0.001"
+            max_iter="200"
+            cartesian="1">
+            <MoveMap>
+                <ResidueSelector selector="interface_residues" chi="1" bb="1"/>
+            </MoveMap>
+        </MinMover>
+        
+        <!-- Docking refinement for dimer interface -->
+        <DockingProtocol name="dock_refine"
+            partners="A_B"
+            low_res_protocol_only="0"
+            docking_local_refine="1"
+            dock_min="1"
+            scorefxn="fullatom"/>
+    </MOVERS>
+    
+    <PROTOCOLS>
+        <!-- Main protocol -->
+        <Add mover="hybridize"/>
+        <Add mover="relax"/>
+        <!-- Optional: Additional interface refinement -->
+        <!-- <Add mover="interface_relax"/> -->
+        <!-- <Add mover="minimize"/> -->
+    </PROTOCOLS>
+    
+    <OUTPUT scorefxn="fullatom"/>
+    
+</ROSETTASCRIPTS>

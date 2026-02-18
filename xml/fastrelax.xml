@@ -1,0 +1,18 @@
+<ROSETTASCRIPTS>
+    <SCOREFXNS>
+        <ScoreFunction name="ref2015" weights="ref2015"/>
+    </SCOREFXNS>
+    
+    <MOVERS>
+        <!-- FastRelax with constraints to refine the threaded model -->
+        <FastRelax name="relax" scorefxn="ref2015" repeats="3">
+            <MoveMap name="mm" bb="true" chi="true"/>
+        </FastRelax>
+    </MOVERS>
+    
+    <PROTOCOLS>
+        <Add mover="relax"/>
+    </PROTOCOLS>
+    
+    <OUTPUT scorefxn="ref2015"/>
+</ROSETTASCRIPTS>

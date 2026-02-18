@@ -1,0 +1,64 @@
+<ROSETTASCRIPTS>
+    <!--
+    Symmetric RosettaCM Protocol for C2 Symmetric Homodimers
+    
+    Use this protocol when modeling a homodimer with C2 symmetry.
+    The model is built using symmetric scoring and sampling.
+    
+    Requires a symmetry definition file (symmetry.symm).
+    -->
+    
+    <SCOREFXNS>
+        <ScoreFunction name="stage1" weights="score3" symmetric="1">
+            <Reweight scoretype="hbond_sr_bb" weight="1.0"/>
+            <Reweight scoretype="hbond_lr_bb" weight="1.0"/>
+            <Reweight scoretype="atom_pair_constraint" weight="1.0"/>
+        </ScoreFunction>
+        
+        <ScoreFunction name="stage2" weights="score4_smooth_cart" symmetric="1">
+            <Reweight scoretype="atom_pair_constraint" weight="0.5"/>
+        </ScoreFunction>
+        
+        <ScoreFunction name="fullatom" weights="ref2015_cart" symmetric="1">
+            <Reweight scoretype="atom_pair_constraint" weight="0.5"/>
+        </ScoreFunction>
+    </SCOREFXNS>
+    
+    <MOVERS>
+        <!-- Set up symmetry -->
+        <SetupForSymmetry name="setup_symm" 
+            definition="symmetry.symm"/>
+        
+        <!-- Symmetric hybridize -->
+        <Hybridize name="hybridize_symm" 
+            stage1_scorefxn="stage1"
+            stage2_scorefxn="stage2"
+            fa_scorefxn="fullatom"
+            batch="1"
+            stage1_increase_cycles="1.0"
+            stage2_increase_cycles="1.0">
+        </Hybridize>
+        
+        <!-- Symmetric relaxation -->
+        <SymMinMover name="symmin" 
+            scorefxn="fullatom"
+            type="lbfgs_armijo_nonmonotone"
+            tolerance="0.001"
+            max_iter="200"/>
+            
+        <FastRelax name="relax_symm" 
+            scorefxn="fullatom" 
+            repeats="1"
+            cartesian="0"/>
+    </MOVERS>
+    
+    <PROTOCOLS>
+        <Add mover="setup_symm"/>
+        <Add mover="hybridize_symm"/>
+        <Add mover="symmin"/>
+        <Add mover="relax_symm"/>
+    </PROTOCOLS>
+    
+    <OUTPUT scorefxn="fullatom"/>
+    
+</ROSETTASCRIPTS>

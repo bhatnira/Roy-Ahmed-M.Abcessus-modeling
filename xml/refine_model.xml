@@ -1,0 +1,35 @@
+<ROSETTASCRIPTS>
+    <!-- Simple homology model refinement -->
+    <!-- Uses template backbone, replaces side chains -->
+    
+    <SCOREFXNS>
+        <ScoreFunction name="ref15" weights="ref2015"/>
+    </SCOREFXNS>
+    
+    <TASKOPERATIONS>
+        <InitializeFromCommandline name="init"/>
+        <IncludeCurrent name="current"/>
+    </TASKOPERATIONS>
+    
+    <MOVERS>
+        <!-- Repack all side chains -->
+        <PackRotamersMover name="repack" scorefxn="ref15" 
+            task_operations="init,current"/>
+        
+        <!-- Minimize -->
+        <MinMover name="min" scorefxn="ref15" chi="1" bb="0" 
+            tolerance="0.001"/>
+        
+        <!-- Full relax -->
+        <FastRelax name="relax" scorefxn="ref15" repeats="2"
+            task_operations="init,current"/>
+    </MOVERS>
+    
+    <PROTOCOLS>
+        <Add mover="repack"/>
+        <Add mover="min"/>
+        <Add mover="relax"/>
+    </PROTOCOLS>
+    
+    <OUTPUT scorefxn="ref15"/>
+</ROSETTASCRIPTS>
