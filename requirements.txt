@@ -1,0 +1,19 @@
+# Python dependencies for M. abscessus DNA Gyrase modeling project
+# Install with: pip install -r requirements.txt
+
+# Core dependencies
+biopython>=1.79
+numpy>=1.21.0
+
+# Structure analysis
+prody>=2.0
+
+# Visualization (optional)
+matplotlib>=3.5.0
+seaborn>=0.11.0
+
+# Molecular docking preparation
+rdkit>=2022.03.1
+
+# Utilities
+pandas>=1.3.0

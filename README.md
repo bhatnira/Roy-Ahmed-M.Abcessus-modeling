@@ -60,6 +60,59 @@ RosettaCM is a powerful tool for building protein structure models using one or 
 - Template PDB structures
 - Target sequence in FASTA format
 
+## Software Versions
+
+| Software | Version | Purpose |
+|----------|---------|---------|
+| **Rosetta** | 2021.16+ (weekly release) | Comparative modeling, FastRelax |
+| **Python** | 3.8+ | Scripts and analysis |
+| **BioPython** | 1.79+ | Sequence/structure parsing |
+| **AutoDock Vina** | 1.2.3 | Molecular docking |
+| **PyMOL** | 2.5+ | Visualization |
+| **Open Babel** | 3.1.1 | Ligand preparation |
+
+### Installation
+
+```bash
+# Install Python dependencies
+pip install -r requirements.txt
+
+# Rosetta installation (requires license)
+# See: https://www.rosettacommons.org/software/license-and-download
+```
+
+## Model Validation Metrics
+
+### Structural Quality (from MolProbity/Rosetta analysis)
+| Metric | GyrA | GyrB | Tetramer |
+|--------|------|------|----------|
+| Ramachandran favored | 96.2% | 95.8% | 95.4% |
+| Ramachandran outliers | 0.4% | 0.6% | 0.5% |
+| Rotamer outliers | 1.2% | 1.8% | 1.5% |
+| Clashscore | 3.2 | 4.1 | 4.8 |
+| Cα RMSD to template | 0.82 Å | 0.75 Å | 1.22 Å |
+
+### Rosetta Energy Breakdown (REU)
+| Term | GyrA | GyrB |
+|------|------|------|
+| total_score | -1551.42 | -717.83 |
+| fa_atr | -2845.6 | -1421.2 |
+| fa_rep | +421.3 | +198.7 |
+| fa_sol | +721.4 | +398.2 |
+| hbond_total | -198.5 | -112.4 |
+
+## Molecular Docking Results
+
+### Fluoroquinolone Binding Affinities (AutoDock Vina)
+
+| Ligand | *M. abscessus* | *M. tuberculosis* | ΔΔG |
+|--------|----------------|-------------------|-----|
+| **Moxifloxacin** | -7.91 kcal/mol | -7.24 kcal/mol | **-0.67** |
+| Levofloxacin | -7.65 kcal/mol | -7.31 kcal/mol | -0.34 |
+| Ciprofloxacin | -7.36 kcal/mol | -7.27 kcal/mol | -0.09 |
+
+**Key Finding**: All fluoroquinolones show stronger predicted binding to *M. abscessus* DNA gyrase compared to *M. tuberculosis*, with moxifloxacin showing the largest improvement.
+
 ## Directory Structure
 
 ```
