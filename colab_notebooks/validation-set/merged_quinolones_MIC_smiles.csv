@@ -1,0 +1,43 @@
+Compound,SMILES,MIC90(uM),Remark,Notebook No.,Structure_Image
+Avarofloxacin  ,O=C(C1=CN(C2CC2)C3=C(C=C(F)C(N4C/C(CCC4)=C(F)\CN)=C3OC)C1=O)O,50,,100.0,structure_images/00_Avarofloxacin.png
+Balofloxacin,CNC1CCCN(C1)C2=C(C=C3C(=C2OC)N(C=C(C3=O)C(=O)O)C4CC4)F,16,,101.0,structure_images/01_Balofloxacin.png
+Besifloxacin Hydrochloride,C1CCN(C[C@@H](C1)N)C2=C(C=C3C(=C2Cl)N(C=C(C3=O)C(=O)O)C4CC4)F.Cl,>16,,130.0,structure_images/02_Besifloxacin_Hydrochloride.png
+Cadrofloxacin ,O=C(O)C1=CN(C2=C(C1=O)C=C(C(N3C[C@@H](NCC3)C)=C2OC(F)F)F)C4CC4,3,,102.0,structure_images/03_Cadrofloxacin.png
+Cinoxacin,CCN1C2=CC3=C(C=C2C(=O)C(=N1)C(=O)O)OCO3,>16,,103.0,structure_images/04_Cinoxacin.png
+Clinafloxacin ,C1CC1N2C=C(C(=O)C3=CC(=C(C(=C32)Cl)N4CCC(C4)N)F)C(=O)O,4,insoluble at 5 mM (DMSO),104.0,structure_images/05_Clinafloxacin.png
+Danofloxacin (mesylate) ,CN1C[C@@H]2C[C@H]1CN2C3=C(C=C4C(=C3)N(C=C(C4=O)C(=O)O)C5CC5)F.CS(=O)(=O)O,48,,105.0,structure_images/06_Danofloxacin__mesylate_.png
+DC-159a,,1,,,
+Delafloxacin,C1C(CN1C2=C(C=C3C(=C2Cl)N(C=C(C3=O)C(=O)O)C4=C(C=C(C(=N4)N)F)F)F)O,12,,131.0,structure_images/08_Delafloxacin.png
+Enoxacin (hydrate),O.O.O.CCn1cc(C(O)=O)c(=O)c2cc(F)c(nc12)N1CCNCC1.CCn1cc(C(O)=O)c(=O)c2cc(F)c(nc12)N1CCNCC1,52,,106.0,structure_images/09_Enoxacin__hydrate_.png
+Enrofloxacin ,CCN1CCN(CC1)C2=C(C=C3C(=C2)N(C=C(C3=O)C(=O)O)C4CC4)F,23,,132.0,structure_images/10_Enrofloxacin.png
+Finafloxacin ,C1CC1N2C=C(C(=O)C3=CC(=C(C(=C32)C#N)N4C[C@H]5[C@H](C4)OCCN5)F)C(=O)O,42,,133.0,structure_images/11_Finafloxacin.png
+Fleroxacin,CN1CCN(CC1)C2=C(C=C3C(=C2F)N(C=C(C3=O)C(=O)O)CCF)F,>128,,107.0,structure_images/12_Fleroxacin.png
+Flumequine,CC1CCC2=C3N1C=C(C(=O)C3=CC(=C2)F)C(=O)O,>16,,108.0,structure_images/13_Flumequine.png
+Garenoxacin (Mesylate hydrate)  ,O=C(O)C1=CN(C2=C(C1=O)C=CC(C3=CC4=C(C=C3)[C@H](NC4)C)=C2OC(F)F)C5CC5.CS(=O)(O)=O.O,128,,109.0,structure_images/14_Garenoxacin__Mesylate_hydrate_.png
+Gemifloxacin mesylate ,CO/N=C/1\CN(CC1CN)C2=C(C=C3C(=O)C(=CN(C3=N2)C4CC4)C(=O)O)F.CS(=O)(=O)O,106,,134.0,structure_images/15_Gemifloxacin_mesylate.png
+Gepotidacin ,C1CC2=CC(=NC=C2OC1)CNC3CCN(CC3)C[C@H]4CN5C(=O)C=CC6=C5N4C(=O)C=N6,32,,135.0,structure_images/16_Gepotidacin.png
+(R) Gyramide Hydrocholoride ,CC1=C(C=C(C=C1)F)S(=O)(=O)N[C@@H]2CCN(C2)CC3=CC=C(C=C3)OC(C)C.Cl,,,136.0,structure_images/17__R__Gyramide_Hydrocholoride.png
+Levofloxacin,C[C@H]1COC2=C3N1C=C(C(=O)C3=CC(=C2N4CCN(CC4)C)F)C(=O)O,10,,137.0,structure_images/18_Levofloxacin.png
+Lomefloxacin HCl ,CCN1C=C(C(=O)C2=CC(=C(C(=C21)F)N3CCNC(C3)C)F)C(=O)O.Cl,>64,,110.0,structure_images/19_Lomefloxacin_HCl.png
+Marbofloxacin ,CN1CCN(CC1)C2=C(C=C3C4=C2OCN(N4C=C(C3=O)C(=O)O)C)F,8,,112.0,structure_images/20_Marbofloxacin.png
+Merafloxacin ,CCNC[C@H]1CCN(C1)C2=C(C=C3C(=C2F)N(C=C(C3=O)C(=O)O)CC)F,>16,insoluble at 5 mM (DMSO),113.0,structure_images/21_Merafloxacin.png
+Moxifloxacin Hydrochloride,COC1=C2C(=CC(=C1N3C[C@@H]4CCCN[C@@H]4C3)F)C(=O)C(=CN2C5CC5)C(=O)O.Cl,4,,114.0,structure_images/22_Moxifloxacin_Hydrochloride.png
+Nadifloxacin,CC1CCC2=C3N1C=C(C(=O)C3=CC(=C2N4CCC(CC4)O)F)C(=O)O,128,,115.0,structure_images/23_Nadifloxacin.png
+Nalidixic acid ,CCN1C=C(C(=O)C2=C1N=C(C=C2)C)C(=O)O,>16,,116.0,structure_images/24_Nalidixic_acid.png
+Norfloxacin,CCN1C=C(C(=O)C2=CC(=C(C=C21)N3CCNCC3)F)C(=O)O,128,,117.0,structure_images/25_Norfloxacin.png
+Ofloxacin,CC1COC2=C3N1C=C(C(=O)C3=CC(=C2N4CCN(CC4)C)F)C(=O)O,>16,dissolved in water,138.0,structure_images/26_Ofloxacin.png
+Orbifloxacin  ,C[C@@H]1CN(C[C@@H](N1)C)C2=C(C3=C(C(=C2F)F)C(=O)C(=CN3C4CC4)C(=O)O)F,16,,118.0,structure_images/27_Orbifloxacin.png
+Oxolinic acid,CCN1C=C(C(=O)C2=CC3=C(C=C21)OCO3)C(=O)O,>16,,119.0,structure_images/28_Oxolinic_acid.png
+Pazufloxacin (mesylate),C[C@H]1COC2=C3N1C=C(C(=O)C3=CC(=C2C4(CC4)N)F)C(=O)O.CS(=O)(=O)O,>48,,120.0,structure_images/29_Pazufloxacin__mesylate_.png
+Pefloxacin,CCN1C=C(C(=O)C2=CC(=C(C=C21)N3CCN(CC3)C)F)C(=O)O,>64,,139.0,structure_images/30_Pefloxacin.png
+Pipemidic acid,CCN1C=C(C(=O)C2=CN=C(N=C21)N3CCNCC3)C(=O)O,>16,,121.0,structure_images/31_Pipemidic_acid.png
+Prulifloxacin ,CC1N2C3=CC(=C(C=C3C(=O)C(=C2S1)C(=O)O)F)N4CCN(CC4)CC5=C(OC(=O)O5)C,50,,122.0,structure_images/32_Prulifloxacin.png
+Quarfloxin  ,CN1CCC[C@H]1CCNC(=O)C2=CN3C4=CC5=CC=CC=C5C=C4OC6=C3C(=CC(=C6N7CCC(C7)C8=NC=CN=C8)F)C2=O,>16,insoluble at 5 mM (DMSO),123.0,structure_images/33_Quarfloxin.png
+Rosoxacin,CCN1C=C(C(=O)C2=C1C=C(C=C2)C3=CC=NC=C3)C(=O)O,>16,,124.0,structure_images/34_Rosoxacin.png
+Rufloxacin hydrochloride,Cl.CN1CCN(CC1)C1=C(F)C=C2C(=O)C(=CN3CCSC1=C23)C(O)=O,140,,125.0,structure_images/35_Rufloxacin_hydrochloride.png
+Sitafloxacin (hydrate) ,C1CC12CN(C[C@H]2N)C3=C(C=C4C(=C3Cl)N(C=C(C4=O)C(=O)O)[C@@H]5C[C@@H]5F)F.O,0.4,,126.0,structure_images/36_Sitafloxacin__hydrate_.png
+Sparfloxacin,C[C@@H]1CN(C[C@@H](N1)C)C2=C(C(=C3C(=C2F)N(C=C(C3=O)C(=O)O)C4CC4)N)F,8,,127.0,structure_images/37_Sparfloxacin.png
+Temafloxacin,CC1CN(CCN1)C2=C(C=C3C(=C2)N(C=C(C3=O)C(=O)O)C4=C(C=C(C=C4)F)F)F,>16,insoluble at 5 mM (DMSO),140.0,structure_images/38_Temafloxacin.png
+Tosufloxacin (tosylate hydrate) ,CC1=CC=C(S(=O)(O)=O)C=C1.N[C@@H]2CN(C3=C(F)C=C4C(C(C(O)=O)=CN(C5=C(F)C=C(F)C=C5)C4=N3)=O)CC2.O,>48,,128.0,structure_images/39_Tosufloxacin__tosylate_hydrate_.png
+Trovafloxacin (mesylate) ,CS(=O)(=O)O.C1[C@@H]2[C@@H](C2N)CN1C3=C(C=C4C(=O)C(=CN(C4=N3)C5=C(C=C(C=C5)F)F)C(=O)O)F,>48,,129.0,structure_images/40_Trovafloxacin__mesylate_.png
+Zoliflodacin  ,C[C@@H]1CN2[C@H]([C@@H](O1)C)C3(CC4=CC5=C(C(=C42)F)ON=C5N6[C@H](COC6=O)C)C(=O)NC(=O)NC3=O,128,,141.0,structure_images/41_Zoliflodacin.png

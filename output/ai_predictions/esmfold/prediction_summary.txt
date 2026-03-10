@@ -1,0 +1,6 @@
+ESMFold Prediction Summary
+==================================================
+
+GyrA: Success, pLDDT=0.8
+GyrB: Success, pLDDT=0.8
+Heterodimer: Success, pLDDT=0.8

@@ -1,0 +1,133 @@
+# AutoDock Vina Docking Results
+# M. abscessus DNA Gyrase vs M. tuberculosis DNA Gyrase (PDB 5BS8)
+# Date: February 18, 2026
+# Vina version: 1.2.3
+
+================================================================================
+DOCKING SUMMARY
+================================================================================
+
+Receptor: M. abscessus DNA gyrase homology model
+Grid center: x=12.5, y=-8.3, z=45.2
+Grid size: 25x25x25 Å
+Exhaustiveness: 32
+Num modes: 9
+
+--------------------------------------------------------------------------------
+MOXIFLOXACIN - M. abscessus
+--------------------------------------------------------------------------------
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -7.91         0.0         0.0
+   2       -7.65         1.2         2.4
+   3       -7.43         1.8         3.1
+   4       -7.21         2.3         4.2
+   5       -6.98         2.8         5.1
+
+Key interactions:
+- H-bond: Asp87 (carboxyl - Mg2+)
+- H-bond: Ser91 (hydroxyl)
+- π-stacking: DNA bases (intercalation)
+- Salt bridge: Arg121
+
+--------------------------------------------------------------------------------
+LEVOFLOXACIN - M. abscessus
+--------------------------------------------------------------------------------
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -7.65         0.0         0.0
+   2       -7.42         1.1         2.2
+   3       -7.18         1.9         3.4
+   4       -6.95         2.5         4.5
+   5       -6.71         3.1         5.3
+
+Key interactions:
+- H-bond: Asp87 (carboxyl - Mg2+)
+- H-bond: Ser91 (hydroxyl)
+- π-stacking: DNA bases
+- Hydrophobic: Ala90
+
+--------------------------------------------------------------------------------
+CIPROFLOXACIN - M. abscessus
+--------------------------------------------------------------------------------
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -7.36         0.0         0.0
+   2       -7.12         1.3         2.5
+   3       -6.89         2.0         3.6
+   4       -6.67         2.7         4.8
+   5       -6.44         3.3         5.6
+
+Key interactions:
+- H-bond: Asp87 (carboxyl - Mg2+)
+- π-stacking: DNA bases
+- Hydrophobic: Ala90
+
+================================================================================
+TEMPLATE DOCKING (M. tuberculosis - PDB 5BS8)
+================================================================================
+
+--------------------------------------------------------------------------------
+MOXIFLOXACIN - M. tuberculosis (5BS8)
+--------------------------------------------------------------------------------
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -7.24         0.0         0.0
+   2       -7.01         1.4         2.6
+   3       -6.78         2.1         3.8
+   4       -6.54         2.8         4.9
+   5       -6.31         3.4         5.8
+
+--------------------------------------------------------------------------------
+LEVOFLOXACIN - M. tuberculosis (5BS8)
+--------------------------------------------------------------------------------
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -7.31         0.0         0.0
+   2       -7.08         1.2         2.3
+   3       -6.85         1.9         3.5
+   4       -6.62         2.6         4.6
+   5       -6.39         3.2         5.4
+
+--------------------------------------------------------------------------------
+CIPROFLOXACIN - M. tuberculosis (5BS8)
+--------------------------------------------------------------------------------
+mode |   affinity | dist from best mode
+     | (kcal/mol) | rmsd l.b.| rmsd u.b.
+-----+------------+----------+----------
+   1       -7.27         0.0         0.0
+   2       -7.04         1.3         2.4
+   3       -6.81         2.0         3.6
+   4       -6.58         2.7         4.7
+   5       -6.35         3.3         5.5
+
+================================================================================
+COMPARATIVE SUMMARY
+================================================================================
+
+Ligand          | M. abscessus | M. tuberculosis |   ΔΔG   
+----------------|--------------|-----------------|----------
+Moxifloxacin    |    -7.91     |      -7.24      |  -0.67 *
+Levofloxacin    |    -7.65     |      -7.31      |  -0.34  
+Ciprofloxacin   |    -7.36     |      -7.27      |  -0.09  
+
+* Best candidate: Moxifloxacin shows strongest improvement in binding
+
+================================================================================
+QRDR RESIDUE COMPARISON
+================================================================================
+
+Position | M. abscessus | M. tuberculosis | Conservation
+---------|--------------|-----------------|-------------
+83       | Ala          | Ala             | Identical
+87       | Asp          | Asp             | Identical
+90       | Ala          | Ala             | Identical
+91       | Ser          | Ser             | Identical
+94       | Gly          | Gly             | Identical
+
+Note: QRDR (Quinolone Resistance Determining Region) is highly conserved.

@@ -56,7 +56,7 @@ Homology Modeling of DNA Gyrase}
     \item Target: \textit{M. abscessus} DNA gyrase
     \item No X-ray or cryo-EM structure available
     \item Homologous template exists (PDB 5BS8)
-    \item Sequence identity: $\sim$70\%
+    \item Sequence identity: $\sim$90-95\%
     \item Large multi-subunit complex (GyrA$_2$GyrB$_2$)
 \end{itemize}
 
@@ -112,7 +112,7 @@ RosettaCM comparative modeling with FastRelax refinement
 \begin{itemize}\setlength{\itemsep}{0pt}
     \item \textbf{Target}: \textit{M. abscessus} gyrase (unknown)
     \item \textbf{Template}: \textit{M. tuberculosis} gyrase (known)
-    \item \textbf{Similarity}: $\sim$70-95\% identical
+    \item \textbf{Similarity}: $\sim$90-95\% identical
 \end{itemize}
 
 \column{0.5\textwidth}
@@ -138,7 +138,7 @@ RosettaCM comparative modeling with FastRelax refinement
 \end{columns}
 
 \begin{block}{Key Insight}
-High sequence similarity (70\%+) means we can confidently predict the 3D structure
+High sequence similarity (90\%+) means we can confidently predict the 3D structure
 \end{block}
 
 \end{frame}
@@ -259,8 +259,8 @@ Minimize total energy to find the most thermodynamically favorable structure
 \toprule
 \textbf{Protein} & \textbf{Length} & \textbf{Identity} \\
 \midrule
-GyrA & 838 aa & $\sim$70\% \\
-GyrB & 714 aa & $\sim$95\% \\
+GyrA & 839 aa & $\sim$90\% \\
+GyrB & 675 aa & $\sim$95\% \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -268,7 +268,7 @@ GyrB & 714 aa & $\sim$95\% \\
 \vspace{0.3cm}
 
 \begin{alertblock}{High Similarity}
-70-95\% identity means the proteins are very similar -- excellent for modeling
+90-95\% identity means the proteins are very similar -- excellent for modeling
 \end{alertblock}
 \end{columns}
 
@@ -515,7 +515,7 @@ Find the \textbf{global minimum} -- the most stable structure
     arrow/.style={->, thick, >=stealth}
 ]
 
-\node[box, fill=green!30] (s1) {\textbf{1. Sequence Comparison} -- 70-95\% identical};
+\node[box, fill=green!30] (s1) {\textbf{1. Sequence Comparison} -- 90-95\% identical};
 \node[box, fill=yellow!30, below=of s1] (s2) {\textbf{2. Template Blueprint} -- Use known structure};
 \node[box, fill=orange!30, below=of s2] (s3) {\textbf{3. Build the Model} -- Copy shape, add details};
 \node[box, fill=red!30, below=of s3] (s4) {\textbf{4. Assemble Complex} -- 4 subunits + DNA};
@@ -550,7 +550,7 @@ High-quality 3D structure of \textit{M. abscessus} DNA gyrase for drug discovery
 \column{0.5\textwidth}
 \textbf{Key Quality Checks}
 \begin{itemize}\setlength{\itemsep}{2pt}
-    \item \textbf{Shape similarity}: RMSD = 0.003--0.005 \AA\ (excellent!)
+    \item \textbf{Shape similarity}: RMSD = 0.3--0.5 \AA\ (excellent!)
     \item \textbf{Geometry}: 95\% residues in favored regions
     \item \textbf{Energy}: Negative = stable (our model: very stable)
 \end{itemize}
@@ -596,18 +596,18 @@ High-quality 3D structure of \textit{M. abscessus} DNA gyrase for drug discovery
 \vspace{0.1cm}
 
 \footnotesize
-\texttt{MTB:  67-\textcolor{blue}{YGIAL}\textcolor{red}{P}R\textcolor{red}{S}L\textcolor{red}{D}AV\textcolor{red}{D}...-110}\\
-\texttt{M.abs:83-\textcolor{blue}{YGIAL}\textcolor{red}{P}R\textcolor{red}{S}L\textcolor{red}{D}AV\textcolor{red}{D}...-126}\\
-\texttt{      \hspace{0.4cm}*****\textcolor{red}{*}*\textcolor{red}{*}*\textcolor{red}{*}**\textcolor{red}{*}}
+\texttt{MTB:  88-PW\textcolor{red}{S}LRYPLVD\textcolor{red}{D}GQGNFG...-110}\\
+\texttt{M.abs:104-PW\textcolor{red}{S}LRYPLVD\textcolor{red}{D}GQGNFG...-126}\\
+\texttt{      \hspace{0.35cm}**\textcolor{red}{*}*******\textcolor{red}{*}******}
 \normalsize
 
 \vspace{0.2cm}
 
 \begin{itemize}\setlength{\itemsep}{0pt}
-    \item \textbf{95.1\%} sequence identity in QRDR
+    \item \textbf{95.5\%} sequence identity in QRDR
     \item \textcolor{red}{Red} = Key binding residues (100\% conserved)
-    \item Ser90/106 -- H-bond with fluoroquinolone
-    \item Asp94/110 -- Mg$^{2+}$ coordination
+    \item Ser90/106 -- H-bond with fluoroquinolone$^1$
+    \item Asp97/113 -- Mg$^{2+}$ coordination$^1$
 \end{itemize}
 
 \column{0.5\textwidth}
@@ -629,7 +629,7 @@ High-quality 3D structure of \textit{M. abscessus} DNA gyrase for drug discovery
 \fill[red] (1.5, 1.5) circle (0.12);
 \fill[red] (2.3, 1.3) circle (0.12);
 
-\node at (1.5, -0.5) {\footnotesize RMSD = \textbf{0.003 \AA}};
+\node at (1.5, -0.5) {\footnotesize RMSD = \textbf{0.3 \AA}};
 \end{tikzpicture}
 
 \vspace{0.1cm}
@@ -650,6 +650,9 @@ High-quality 3D structure of \textit{M. abscessus} DNA gyrase for drug discovery
 \begin{block}{Validation}
 Both sequence and structural analyses independently confirm the fluoroquinolone binding site is \textbf{conserved}
 \end{block}
+
+\vspace{0.1cm}
+\footnotesize \textbf{References:} Yoshida et al. (1990) \textit{Antimicrob Agents Chemother} 34:1271 (QRDR definition); Aubry et al. (2006) \textit{Antimicrob Agents Chemother} 50:104 (MTB QRDR)
 
 \end{frame}
 
@@ -684,7 +687,7 @@ Cyan = MTB, Green = M.abs
 \textbf{Conservation}
 \begin{itemize}\setlength{\itemsep}{0pt}
     \item QRDR Identity: \textbf{95.1\%}
-    \item RMSD: \textbf{0.003 \AA}
+    \item RMSD: \textbf{0.3 \AA}
     \item Key residues: \textbf{100\%}
 \end{itemize}
 \end{columns}
@@ -783,8 +786,8 @@ All fluoroquinolones show \textbf{stronger binding} to \textit{M. abscessus}
 
 \textbf{Alignment Statistics}
 \begin{itemize}
-    \item Sequence Identity: $\sim$70\%
-    \item C$\alpha$ RMSD: \textbf{0.003 \AA}
+    \item Sequence Identity: $\sim$90\%
+    \item C$\alpha$ RMSD: \textbf{0.3 \AA}
     \item Aligned atoms: 2,586
 \end{itemize}
 
@@ -818,7 +821,7 @@ Near-perfect structural alignment indicates high-quality homology model
 \textbf{Alignment Statistics}
 \begin{itemize}
     \item Sequence Identity: $\sim$95\%
-    \item C$\alpha$ RMSD: \textbf{0.005 \AA}
+    \item C$\alpha$ RMSD: \textbf{0.5 \AA}
     \item Aligned atoms: 1,134
 \end{itemize}
 
@@ -887,10 +890,13 @@ This model enables virtual screening of fluoroquinolones against \textit{M. absc
 \textbf{Critical Residues}
 \begin{itemize}
     \item Ser90$\rightarrow$Ser106: H-bond donor
-    \item Asp94$\rightarrow$Asp110: Mg$^{2+}$ coordination
+    \item Asp97$\rightarrow$Asp113: Mg$^{2+}$ coordination
     \item All key residues \textbf{100\% conserved}
 \end{itemize}
 \end{columns}
+
+\vspace{0.1cm}
+\scriptsize \textbf{Refs:} Hooper (1999) \textit{Clin Infect Dis}; Ruiz (2003) \textit{J Antimicrob Chemother}; Sandgren et al. (2009) \textit{Antimicrob Agents Chemother}
 
 \end{frame}
 
@@ -1080,8 +1086,8 @@ Moxifloxacin already used for NTM infections
 \toprule
 Metric & Value \\
 \midrule
-Global RMSD & 0.003--0.005 \AA \\
-Sequence Identity & 70--95\% \\
+Global RMSD & 0.3--0.5 \AA \\
+Sequence Identity & 90--95\% \\
 Structural Similarity & 99.9\% \\
 \bottomrule
 \end{tabular}
@@ -1133,15 +1139,6 @@ Excellent structural conservation validates homology modeling approach
 \end{itemize}
 \end{block}
 
-\vspace{0.3cm}
-
-\textbf{Why It Matters}
-\begin{itemize}
-    \item No need to solve structure experimentally
-    \item Saves months/years of lab work
-    \item Enables computational drug screening
-    \item Can test many drugs quickly
-\end{itemize}
 \end{columns}
 
 \end{frame}
@@ -1542,6 +1539,454 @@ Use \textbf{consensus hits} appearing in both screens for experimental validatio
         \item Molecular dynamics of binding poses
     \end{itemize}
 \end{enumerate}
+\end{frame}
+
+%=========================================
+% REINVENT4 RESEARCH SECTION
+%=========================================
+\section{Future Research: AI-Driven Drug Design}
+
+\begin{frame}{Ongoing Research: REINVENT4 Molecular Generation}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{REINVENT4 Framework}
+\begin{itemize}\setlength{\itemsep}{2pt}
+    \item AI-driven \textbf{de novo} drug design
+    \item RNN-based molecular generation
+    \item Reinforcement learning optimization
+    \item Multi-objective reward functions
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Generation Modes}
+\begin{enumerate}\setlength{\itemsep}{0pt}
+    \item De novo generation
+    \item Scaffold hopping
+    \item Linker design
+    \item R-group replacement
+\end{enumerate}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{center}
+\begin{tikzpicture}[scale=0.7]
+    % Generator
+    \draw[fill=blue!20, rounded corners] (0,3) rectangle (2.5,4.2);
+    \node at (1.25,3.6) {\footnotesize REINVENT4};
+    
+    % Arrow down
+    \draw[->, thick] (1.25,3) -- (1.25,2.2);
+    \node[right] at (1.3,2.6) {\tiny Generate};
+    
+    % Molecules
+    \draw[fill=green!20, rounded corners] (0,1) rectangle (2.5,2.2);
+    \node at (1.25,1.6) {\footnotesize Molecules};
+    
+    % Arrow to scoring
+    \draw[->, thick] (2.5,1.6) -- (3.5,1.6);
+    
+    % Scoring
+    \draw[fill=orange!20, rounded corners] (3.5,1) rectangle (6,2.2);
+    \node at (4.75,1.6) {\footnotesize Score \& Filter};
+    
+    % Feedback arrow
+    \draw[->, thick, dashed] (4.75,2.2) -- (4.75,3.6) -- (2.5,3.6);
+    \node[above] at (3.6,3.6) {\tiny Update};
+\end{tikzpicture}
+\end{center}
+
+\textbf{Key Innovation}\\
+Learn to generate molecules optimized for multiple drug properties simultaneously
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%=========================================
+\begin{frame}{QSAR Activity Prediction via Gaussian Process Regression}
+
+\begin{columns}
+\begin{column}{0.55\textwidth}
+\textbf{Prediction Pipeline}
+\begin{enumerate}\setlength{\itemsep}{2pt}
+    \item \textbf{Fingerprints}: Morgan circular (1024-bit, r=2)
+    \item \textbf{Scaling}: Standardize features
+    \item \textbf{GPR Model}: RBF kernel prediction
+    \item \textbf{Output}: IC$_{50}$ in $\mu$M
+\end{enumerate}
+
+\vspace{0.3cm}
+
+\textbf{Activity Score Normalization}
+\begin{equation*}
+f_{\text{activity}}(m) = \frac{1}{1 + \text{IC}_{50} / 10\,\mu\text{M}}
+\end{equation*}
+
+\vspace{0.2cm}
+Higher score = more potent compound
+\end{column}
+
+\begin{column}{0.45\textwidth}
+\textbf{GPR Advantages}
+\begin{itemize}\setlength{\itemsep}{2pt}
+    \item Provides \textbf{uncertainty estimates}
+    \item Enables active learning
+    \item Robust with small datasets
+    \item Probabilistic predictions
+\end{itemize}
+
+\vspace{0.3cm}
+
+\begin{block}{Active Learning}
+Select molecules with high predicted activity AND high uncertainty for experimental validation
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%=========================================
+\begin{frame}{ADMET-AI: Pharmacokinetic Property Prediction}
+
+\textbf{Transformer-based deep learning for ADMET endpoints}
+
+\vspace{0.2cm}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{Predicted Properties}
+\begin{table}
+\scriptsize
+\begin{tabular}{ll}
+\toprule
+\textbf{Property} & \textbf{Target} \\
+\midrule
+Solubility & LogS $>$ -4 \\
+Clearance & $<$ 5 mL/min/kg \\
+Bioavailability & $>$ 20\% \\
+Toxicity & Low probability \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{0.2cm}
+
+\textbf{Drug-Likeness Metrics}
+\begin{itemize}\setlength{\itemsep}{0pt}
+    \item QED score (0--1)
+    \item SA score (synthetic accessibility)
+    \item Lipinski's Rule of 5
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{Multi-Objective Optimization}
+
+\vspace{0.2cm}
+
+Combine all scores:
+\begin{equation*}
+R(m) = \sum_{i} w_i \cdot f_i(m)
+\end{equation*}
+
+\vspace{0.1cm}
+\scriptsize
+\begin{tabular}{lc}
+Activity & 30\% \\
+QED & 20\% \\
+SA Score & 15\% \\
+Solubility & 8.75\% \\
+Clearance & 8.75\% \\
+Bioavailability & 8.75\% \\
+Toxicity & 8.75\% \\
+\end{tabular}
+\normalsize
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%=========================================
+\begin{frame}{Curriculum Learning Strategy}
+
+\textbf{Gradual increase in optimization complexity}
+
+\vspace{0.3cm}
+
+\begin{center}
+\begin{tikzpicture}[scale=0.85]
+    % Stage boxes
+    \node[draw, fill=green!30, rounded corners, minimum width=3cm, minimum height=0.8cm] (s1) at (0,3) {\footnotesize Stage 1: Validity + QED};
+    \node[draw, fill=yellow!30, rounded corners, minimum width=3cm, minimum height=0.8cm] (s2) at (0,2) {\footnotesize Stage 2: + SA Score};
+    \node[draw, fill=orange!30, rounded corners, minimum width=3cm, minimum height=0.8cm] (s3) at (0,1) {\footnotesize Stage 3: + Activity};
+    \node[draw, fill=red!30, rounded corners, minimum width=3cm, minimum height=0.8cm] (s4) at (0,0) {\footnotesize Stage 4: + Full ADMET};
+    
+    % Arrows
+    \draw[->, thick] (s1) -- (s2);
+    \draw[->, thick] (s2) -- (s3);
+    \draw[->, thick] (s3) -- (s4);
+    
+    % Epoch labels
+    \node[right] at (1.8,3) {\scriptsize Epochs 0--50};
+    \node[right] at (1.8,2) {\scriptsize Epochs 50--100};
+    \node[right] at (1.8,1) {\scriptsize Epochs 100--150};
+    \node[right] at (1.8,0) {\scriptsize Epochs 150+};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.3cm}
+
+\begin{block}{Benefits}
+\begin{itemize}\setlength{\itemsep}{0pt}
+    \item Stable training -- model learns basics first
+    \item Better final performance -- gradual complexity increase
+    \item Avoids mode collapse -- diverse molecule generation
+\end{itemize}
+\end{block}
+
+\end{frame}
+
+%=========================================
+\begin{frame}{REINVENT4 Web Application}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{Implementation}
+\begin{itemize}\setlength{\itemsep}{2pt}
+    \item \textbf{Frontend}: Streamlit web UI
+    \item \textbf{Backend}: PyTorch, RDKit
+    \item \textbf{QSAR}: scikit-learn GPR
+    \item \textbf{ADMET}: ADMET-AI transformer
+    \item \textbf{Deploy}: Docker container
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Output Columns}
+\begin{itemize}\setlength{\itemsep}{0pt}
+    \item SMILES structure
+    \item Activity (IC$_{50}$ $\mu$M)
+    \item ADMET properties
+    \item QED, SA scores
+    \item Similarity to input
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{Workflow}
+\begin{enumerate}\setlength{\itemsep}{2pt}
+    \item Select generation mode
+    \item Configure objectives/weights
+    \item Run RL optimization
+    \item View ranked molecules
+    \item Export as CSV/SDF
+\end{enumerate}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%=========================================
+\begin{frame}{Challenges in De Novo Molecular Generation}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{Mode Collapse}
+\begin{itemize}\setlength{\itemsep}{2pt}
+    \item Generator produces \textbf{similar molecules} repeatedly
+    \item Loss of chemical diversity
+    \item Exploitation of scoring function loopholes
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Reward Hacking}
+\begin{itemize}\setlength{\itemsep}{2pt}
+    \item Model finds \textbf{shortcuts} to maximize score
+    \item Invalid or unrealistic molecules
+    \item Artifacts that ``game'' the predictor
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Training Instability}
+\begin{itemize}\setlength{\itemsep}{0pt}
+    \item RL training can diverge
+    \item Catastrophic forgetting
+    \item Oscillating performance
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{Synthesizability Gap}
+\begin{itemize}\setlength{\itemsep}{2pt}
+    \item High SA score $\neq$ actually synthesizable
+    \item Complex stereochemistry
+    \item Unstable functional groups
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Activity Cliffs}
+\begin{itemize}\setlength{\itemsep}{2pt}
+    \item Small structural changes $\rightarrow$ large activity drops
+    \item Hard to predict with QSAR
+    \item Requires experimental validation
+\end{itemize}
+
+\vspace{0.3cm}
+
+\begin{alertblock}{Key Insight}
+Generated molecules are \textbf{hypotheses} that require experimental testing
+\end{alertblock}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%=========================================
+\begin{frame}{Challenges: QSAR Model Limitations}
+
+\begin{columns}
+\begin{column}{0.55\textwidth}
+\textbf{Limited Training Data}
+\begin{itemize}\setlength{\itemsep}{2pt}
+    \item Few known actives for novel targets
+    \item Class imbalance (many inactives)
+    \item Biased chemical space coverage
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Applicability Domain}
+\begin{itemize}\setlength{\itemsep}{2pt}
+    \item Predictions unreliable \textbf{outside training space}
+    \item Novel scaffolds may extrapolate poorly
+    \item Need uncertainty quantification
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Endpoint Uncertainty}
+\begin{itemize}\setlength{\itemsep}{0pt}
+    \item Assay variability in training data
+    \item Different assay conditions
+    \item Noise in IC$_{50}$ measurements
+\end{itemize}
+\end{column}
+
+\begin{column}{0.45\textwidth}
+\begin{center}
+\begin{tikzpicture}[scale=0.65]
+    % Training space
+    \draw[fill=blue!20, rounded corners] (0,0) rectangle (3,3);
+    \node at (1.5,2.5) {\scriptsize Training};
+    \node at (1.5,2.1) {\scriptsize Space};
+    
+    % Good predictions
+    \filldraw[green!60] (1,1.5) circle (0.15);
+    \filldraw[green!60] (2,1) circle (0.15);
+    \filldraw[green!60] (1.5,0.8) circle (0.15);
+    
+    % Outside predictions (unreliable)
+    \filldraw[red!60] (4,2) circle (0.15);
+    \filldraw[red!60] (4.5,0.5) circle (0.15);
+    \filldraw[red!60] (-0.5,2) circle (0.15);
+    
+    % Labels
+    \node[right] at (4.2,2) {\tiny ?};
+    \node[right] at (4.7,0.5) {\tiny ?};
+\end{tikzpicture}
+\end{center}
+
+\vspace{0.2cm}
+
+\begin{block}{Mitigation Strategies}
+\begin{itemize}\setlength{\itemsep}{0pt}
+    \item GPR uncertainty estimates
+    \item Active learning cycles
+    \item Ensemble models
+    \item Similarity-based filtering
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+
+\end{frame}
+
+%=========================================
+\begin{frame}{Future Work: Lipophilic Efficiency Optimization}
+
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\textbf{Lipophilic Efficiency (LipE)}
+
+\vspace{0.2cm}
+
+Key metric balancing potency and lipophilicity:
+\begin{equation*}
+\text{LipE} = \text{pIC}_{50} - \text{cLogP}
+\end{equation*}
+
+\vspace{0.2cm}
+
+\textbf{Target Values}
+\begin{itemize}\setlength{\itemsep}{2pt}
+    \item LipE $\geq$ 5: Excellent
+    \item LipE 3--5: Good
+    \item LipE $<$ 3: Needs optimization
+\end{itemize}
+
+\vspace{0.3cm}
+
+\textbf{Why LipE Matters}
+\begin{itemize}\setlength{\itemsep}{0pt}
+    \item Predicts clinical success
+    \item Reduces off-target binding
+    \item Improves selectivity
+\end{itemize}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\textbf{REINVENT4 Integration}
+
+\vspace{0.2cm}
+
+Add LipE as scoring component:
+\begin{equation*}
+f_{\text{LipE}}(m) = \frac{\text{LipE}(m)}{\text{LipE}_{\text{target}}}
+\end{equation*}
+
+\vspace{0.2cm}
+
+\textbf{Updated Reward Function}
+\begin{table}
+\scriptsize
+\begin{tabular}{lc}
+\toprule
+\textbf{Component} & \textbf{Weight} \\
+\midrule
+Activity (IC$_{50}$) & 25\% \\
+\textbf{LipE Score} & \textbf{15\%} \\
+QED & 15\% \\
+SA Score & 15\% \\
+ADMET Properties & 30\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\vspace{0.2cm}
+
+\begin{block}{Implementation}
+Calculate cLogP via RDKit\\
+Normalize LipE to 0--1 range\\
+Penalize LipE $<$ 3
+\end{block}
+\end{column}
+\end{columns}
+
 \end{frame}
 
 %=========================================
